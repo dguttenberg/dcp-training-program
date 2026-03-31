@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI In the Agency DCP</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #0a0a14;
+  --bg2:      #10101e;
+  --surface:  #15152a;
+  --rule:     #2a2a44;
+  --text:     #f0f0f8;
+  --muted:    #8888aa;
+  --green:    #00e87a;
+  --green-dim: rgba(0,232,122,0.12);
+  --pink:     #e85080;
+  --ink:      #f0f0f8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(10,10,20,0.95);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 54px;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.nav-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.nav-brand em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+
+.nav-links a:hover { color: var(--green); }
+
+/* ── HERO ── */
+.hero {
+  padding: 100px 60px 80px;
+  background: linear-gradient(135deg, #0a0a14 0%, #1a0a2e 50%, #2a0a1e 100%);
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(0,232,122,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.hero-sub {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #b0b0cc;
+  max-width: 560px;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.hero-byline {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+/* ── SECTIONS ── */
+section {
+  padding: 80px 60px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.section-title em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.section-intro {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #b0b0cc;
+  max-width: 680px;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+/* ── LETTER ── */
+.letter-outer { width: 100%; }
+
+.letter-body {
+  max-width: 860px;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #c8c8e0;
+}
+
+.letter-body p { margin-bottom: 24px; }
+
+.letter-body .divider {
+  text-align: center;
+  color: var(--muted);
+  font-size: 18px;
+  margin: 40px 0;
+  letter-spacing: 0.3em;
+}
+
+.letter-pull {
+  border-top: 1px solid var(--green);
+  border-bottom: 1px solid var(--green);
+  padding: 28px 0;
+  margin: 44px 0;
+}
+
+.letter-pull p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--green);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.letter-sig {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ── OUR APPROACH GRID ── */
+.happening-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.happening-card {
+  background: var(--bg2);
+  padding: 32px 28px 28px;
+  transition: background 0.15s;
+}
+
+.happening-card:hover { background: var(--surface); }
+
+.hc-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.hc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.hc-body {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.placeholder {
+  background: var(--surface);
+  border: 1px dashed var(--rule);
+  border-radius: 4px;
+  padding: 20px 24px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  font-style: italic;
+  margin-top: 24px;
+}
+
+/* ── CONVERSATION SERIES ── */
+.series-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.series-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.s-card {
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg2);
+}
+
+.s-card:last-child { border-bottom: none; }
+
+.s-top {
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.s-top:hover { background: var(--surface); }
+.s-top.open  { background: var(--surface); }
+
+.s-week {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  padding: 20px 14px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 72px;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.s-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green);
+  padding: 20px 14px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 52px;
+}
+
+.s-body {
+  padding: 18px 22px;
+  flex: 1;
+}
+
+.s-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.s-title em { font-style: normal; color: var(--green); }
+
+.s-summary {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.s-right {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 160px;
+  border-left: 1px solid var(--rule);
+}
+
+.s-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.s-who {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.s-toggle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--green);
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+.s-expand {
+  display: none;
+  padding: 16px 22px 20px 124px;
+  border-top: 1px solid var(--rule);
+  background: var(--surface);
+  font-size: 14px;
+  line-height: 1.75;
+  color: #b0b0cc;
+}
+
+.s-expand.open { display: block; }
+
+.fmt-panel   { background: rgba(0,232,122,0.1);  color: var(--green); }
+.fmt-honest  { background: rgba(232,80,128,0.12); color: var(--pink); }
+.fmt-provoke { background: rgba(0,232,122,0.1);  color: var(--green); }
+.fmt-joint   { background: rgba(180,100,255,0.12); color: #b464ff; }
+.fmt-show    { background: rgba(0,232,122,0.1);  color: var(--green); }
+.fmt-co      { background: rgba(232,80,128,0.12); color: var(--pink); }
+
+/* ── CERTIFICATION ── */
+.cert-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.cert-body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #b0b0cc;
+}
+
+.cert-body p { margin-bottom: 18px; }
+
+.cert-details {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cert-detail-row {
+  display: flex;
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 20px;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.cert-detail-row:last-child { border-bottom: none; }
+
+.cdr-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  width: 100px;
+  flex-shrink: 0;
+}
+
+.cdr-value {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ── INTERNAL SECTION ── */
+#internal {
+  background: #06060f;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 32px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg);
+}
+
+.footer-brand {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.footer-note {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+@media (max-width: 768px) {
+  nav, .hero, section { padding-left: 24px; padding-right: 24px; }
+  .hero-title { font-size: 44px; }
+  .section-title { font-size: 32px; }
+  .happening-grid { grid-template-columns: 1fr; }
+  .cert-layout { grid-template-columns: 1fr; }
+  .s-week, .s-num { display: none; }
+  .s-right { display: none; }
+  footer { padding: 24px; flex-direction: column; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+ <div class="nav-brand">AI <em>IN THE AGENCY</em> · DCP</div>
+ <ul class="nav-links">
+ <li><a href="#letter">The Letter</a></li>
+ <li><a href="#whats-happening">What's Happening</a></li>
+ <li><a href="#conversations">The Conversations</a></li>
+ <li><a href="#certification">Certification</a></li>
+ <li><a href="#internal" style="color:var(--accent)">Internal ↗</a></li>
+ </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+ <div class="hero-eyebrow">Doner Colle Partners · 2026</div>
+ <h1 class="hero-title">AI <em>In the Agency.</em></h1>
+ <p class="hero-sub">This is not a training program. It is an invitation to help build what this agency becomes next and the resources to do it with.</p>
+ <div class="hero-byline">Doug Guttenberg, EVP AI Innovation and Delivery · John Doyle, Chief Strategy Officer</div>
+</section>
+
+<!-- THE LETTER -->
+<section id="letter">
+  <div class="letter-outer">
+    <div class="section-eyebrow">Where we are going</div>
+    <h2 class="section-title">AI is already <em>here.</em></h2>
+    <div class="letter-body">
+      <p>The question is no longer whether to use it. It is whether we use it well, with intention, and in a way that makes our work and our people stronger rather than more interchangeable.</p>
+      <p>This is DCP's plan for doing that. Not a mandate from the top down. A genuine program built around the belief that the people in this building are what makes any of this work in the first place.</p>
+      <p>Three things are happening in parallel: a conversation series designed to build real skill and provoke real thinking, a certification that gives everyone a shared foundation, and a clear map of what tools are available and how to access them.</p>
+      <p>This is not something being done to the agency. It is something being built with the people in it. What comes next depends on how much you choose to engage with it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S HAPPENING -->
+<section id="whats-happening">
+ <div class="section-eyebrow">Our approach</div>
+ <h2 class="section-title">Our <em>approach.</em></h2>
+ <p class="section-intro">Three things are running in parallel across DCP. They connect. Here is how to think about each one.</p>
+
+ <div class="happening-grid">
+ <div class="happening-card">
+ <div class="hc-num">01</div>
+ <div class="hc-title">The Conversations</div>
+ <div class="hc-body">A bi-weekly series of sessions across DCP. Panels, debates, live showcases, and structured conversations. Some sessions are designed to build specific skills. Others are designed to deepen how you think about AI and what you do with it. All of them are built around the idea that real mastery comes from engaging with the hard questions, not just the tools.</div>
+ </div>
+ <div class="happening-card">
+ <div class="hc-num">02</div>
+ <div class="hc-title">The Certification</div>
+ <div class="hc-body">A self-directed course with a quiz and a certification that's yours to keep. Not about writing better prompts. About the harder questions where AI sharpens your thinking and where it quietly flattens it. Mandatory for both agencies. Coming [Month].</div>
+ </div>
+ <div class="happening-card">
+ <div class="hc-num">03</div>
+ <div class="hc-title">The Tools</div>
+ <div class="hc-body">A clear map of what AI tools are available to you right now, what is coming, and how to access them. Right now that means Copilot and Firefly. No one gets asked to learn something they cannot touch. Links, access levels, and the ability to request access will live here.</div>
+ </div>
+ </div>
+
+ <div class="placeholder">[ROADMAP VISUAL the transformation roadmap showing the org-facing milestones and timeline will be embedded here]</div>
+</section>
+
+<!-- THE CONVERSATIONS -->
+<section id="conversations">
+ <div class="section-eyebrow">AI In the Agency</div>
+ <div class="series-name">The Conversation Series</div>
+ <h2 class="section-title">Seven sessions. Real <em>mastery.</em></h2>
+ <p class="section-intro">Bi-weekly across both agencies, starting [Week 2 date]. Each session is a different format panel, debate, showcase, live build. All of them are designed to build real mastery of a new technology not technical fluency, but the deeper skill of knowing how to think with it, when to trust it, and when to push back.</p>
+
+ 
+  
+  <div class="series-sessions">
+    <div class="s-card" id="sc0">
+      <div class="s-top" onclick="toggleS(0)">
+        <div class="s-week">Week 2</div>
+        <div class="s-num">01</div>
+        <div class="s-body">
+          <div class="s-title">The future must be about <em>creativity</em></div>
+          <div class="s-summary">What is your relationship with AI right now? For most people it starts as a search engine and stays there. This session is about changing that: making AI a genuine thought partner that augments your most powerful asset.</div>
+        </div>
+        <div class="s-right">
+          <span class="s-badge fmt-panel">Panel</span>
+          <span class="s-who">Senior leaders across DCP</span>
+          <span class="s-toggle" id="st0">+ more</span>
+        </div>
+      </div>
+      <div class="s-expand" id="se0">Format: Cross-disciplinary panel. The room includes ECDs, senior strategists, and account leads. The central question is not what AI does to creativity but what creativity looks like when intelligence is abundant and the scarce thing is perspective, taste, and point of view. Each agency runs their own version with their own senior people. Doug moderates.</div>
+    </div>
+    <div class="s-card" id="sc1">
+      <div class="s-top" onclick="toggleS(1)">
+        <div class="s-week">Week 4</div>
+        <div class="s-num">02</div>
+        <div class="s-body">
+          <div class="s-title">Ask us <em>anything</em></div>
+          <div class="s-summary">The questions people are actually asking. About jobs. About privacy. About energy. About the moral weight of the technology. An open AMA with business and media guests. Bring your hardest questions.</div>
+        </div>
+        <div class="s-right">
+          <span class="s-badge fmt-honest">AMA</span>
+          <span class="s-who">Business + media guests</span>
+          <span class="s-toggle" id="st1">+ more</span>
+        </div>
+      </div>
+      <div class="s-expand" id="se1">Format: Open AMA. A panel with business and media representation alongside internal voices. Topics include job displacement, data privacy, energy consumption, the moral implications of generative AI, and what responsible use actually looks like in practice. No topic is off limits. The format is structured to get to genuine answers, not comfortable ones.</div>
+    </div>
+    <div class="s-card" id="sc2">
+      <div class="s-top" onclick="toggleS(2)">
+        <div class="s-week">Week 6</div>
+        <div class="s-num">03</div>
+        <div class="s-body">
+          <div class="s-title">What do you do with the <em>answers</em> you get?</div>
+          <div class="s-summary">You are in a session with AI and something good is happening. Now what? This session is about the practical reality of working alongside a thought partner that generates fluently and fast.</div>
+        </div>
+        <div class="s-right">
+          <span class="s-badge fmt-provoke">Provocation</span>
+          <span class="s-who">Doug-led</span>
+          <span class="s-toggle" id="st2">+ more</span>
+        </div>
+      </div>
+      <div class="s-expand" id="se2">Format: Structured provocation with open discussion. Doug leads with a framework and then opens it up. The session tackles authorship, identity, and the practical craft of working with AI without losing your voice. Specific techniques for staying in the driver seat when the machine is generating fast. How to know when to take the output and when to throw it away.</div>
+    </div>
+    <div class="s-card" id="sc3">
+      <div class="s-top" onclick="toggleS(3)">
+        <div class="s-week">Week 8</div>
+        <div class="s-num">04</div>
+        <div class="s-body">
+          <div class="s-title">What are we actually <em>building?</em></div>
+          <div class="s-summary">The full DCP, one room. Doug and John walk through how we are selling AI services to clients, what our ambition is, and what the response has been so far. Then the floor is yours.</div>
+        </div>
+        <div class="s-right">
+          <span class="s-badge fmt-joint">Both agencies</span>
+          <span class="s-who">Doug + John</span>
+          <span class="s-toggle" id="st3">+ more</span>
+        </div>
+      </div>
+      <div class="s-expand" id="se3">Format: Presentation followed by open Q&A. Hybrid session with live rooms at both Doner and CM on the same call. Doug and John cover: what we have built for clients, how it is being received, where we are going with it, and what role the people in this room play in getting there. Structured to give people enough context to ask real questions.</div>
+    </div>
+    <div class="s-card" id="sc4">
+      <div class="s-top" onclick="toggleS(4)">
+        <div class="s-week">Week 10</div>
+        <div class="s-num">05</div>
+        <div class="s-body">
+          <div class="s-title">Real work, real <em>tools</em></div>
+          <div class="s-summary">Two creatives who have incorporated generative AI deeply into their day-to-day. They will show what they are making, explain how they think about it, and make things on the fly.</div>
+        </div>
+        <div class="s-right">
+          <span class="s-badge fmt-show">Showcase</span>
+          <span class="s-who">Madison + Matt (Doner)<br>CM TBD</span>
+          <span class="s-toggle" id="st4">+ more</span>
+        </div>
+      </div>
+      <div class="s-expand" id="se4">Format: Live showcase. Presenters share actual work from real projects, walk through their process, and demonstrate tools in real time. The session includes unscripted live creation so the audience sees the process, not just the result. Followed by open conversation about what people are exploring in their own work.</div>
+    </div>
+    <div class="s-card" id="sc5">
+      <div class="s-top" onclick="toggleS(5)">
+        <div class="s-week">Week 12</div>
+        <div class="s-num">06</div>
+        <div class="s-body">
+          <div class="s-title">From account person to <em>intelligence analyst</em></div>
+          <div class="s-summary">What happens when you really dig in. This session goes beyond generative AI into advanced application: using AI to build on your existing expertise and create something genuinely new.</div>
+        </div>
+        <div class="s-right">
+          <span class="s-badge fmt-show">Showcase</span>
+          <span class="s-who">Ryan DeVito (Doner)<br>CM TBD</span>
+          <span class="s-toggle" id="st5">+ more</span>
+        </div>
+      </div>
+      <div class="s-expand" id="se5">Format: Interview-style showcase. Each presenter walks through a specific business problem they tackled with AI, the tools they used, what they built, and what they learned. The emphasis is on depth of application, not breadth. Followed by conversation about what it takes to get there.</div>
+    </div>
+    <div class="s-card" id="sc6">
+      <div class="s-top" onclick="toggleS(6)">
+        <div class="s-week">Week 14</div>
+        <div class="s-num">07</div>
+        <div class="s-body">
+          <div class="s-title"><em>Could</em> vs. should: a production debate</div>
+          <div class="s-summary">What are the real risks of generative AI for brands? What does good look like? What does exceptional look like? A debate around how AI should and should not be used in production. The heads of production from across DCP making the case from their own experience and opening it up to the room.</div>
+        </div>
+        <div class="s-right">
+          <span class="s-badge fmt-co">Live Debate</span>
+          <span class="s-who">Jennie (Doner)<br>Laurel (CM)</span>
+          <span class="s-toggle" id="st6">+ more</span>
+        </div>
+      </div>
+      <div class="s-expand" id="se6">Format: Live structured debate. The debate covers where AI is genuinely transforming production for the better, where it creates risk for brands and for craft, how production economics change when AI is in the equation, and what the production industry looks like in five years. The room is invited in.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CERTIFICATION -->
+<section id="certification">
+ <div class="section-eyebrow">The foundation</div>
+ <h2 class="section-title">DCP <em>CERTIFICATION.</em></h2>
+
+ <div class="cert-layout">
+ <div class="cert-body">
+ <p>This is not a prompting course. The certification is about building real mastery of a new technology not technical fluency, but the deeper skill of knowing how to think with it, when to trust it, and when to push back. Where AI genuinely sharpens your thinking and where it quietly flattens it. How to use it in a way that builds your instincts rather than outsourcing them.</p><p>A significant part of the course covers generative AI guardrails and safety responsible use, data privacy, what not to put into these systems, and how to protect client confidentiality and your own work. These are not optional considerations. They are the foundation everything else is built on.</p>
+
+ <p>It's self-paced, self-directed, and yours to complete on your own time. There's a quiz, and a certification at the end that belongs to you regardless of where your career goes.</p>
+
+ <p>It's mandatory for both agencies not because we want to check a box, but because we want everyone in these buildings to be in the same conversation from the same foundation. The sessions make more sense when you've done the course. The course makes more sense when you've been in the sessions.</p>
+
+ <div class="placeholder">[Course outline modules and topics will be listed here once content is finalized]</div>
+ </div>
+
+ <div class="cert-details">
+ <div class="cert-detail-row">
+ <div class="cdr-label">Format</div>
+ <div class="cdr-value">Self-paced · self-directed · online</div>
+ </div>
+ <div class="cert-detail-row">
+ <div class="cdr-label">Length</div>
+ <div class="cdr-value">[Duration TBD]</div>
+ </div>
+ <div class="cert-detail-row">
+ <div class="cdr-label">Deadline</div>
+ <div class="cdr-value">One month from date assigned</div>
+ </div>
+ <div class="cert-detail-row">
+ <div class="cdr-label">Required</div>
+ <div class="cdr-value">Both agencies · all staff</div>
+ </div>
+ <div class="cert-detail-row">
+ <div class="cdr-label">Doner note</div>
+ <div class="cdr-value">Includes an additional SAG module</div>
+ </div>
+ <div class="cert-detail-row">
+ <div class="cdr-label">Coming</div>
+ <div class="cdr-value">[Launch date TBD · distributed through people ops]</div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- INTERNAL ROADMAP REMOVE BEFORE LAUNCH -->
+<section id="internal" style="background:#1a1a1a; color:#e8eaf0;">
+ <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#c8441a; margin-bottom:16px;">Internal Only Remove Before Launch</div>
+ <h2 style="font-family:'Playfair Display',serif; font-size:32px; letter-spacing:-0.015em; margin-bottom:16px; color:#e8eaf0;">The <em style='font-style:italic; color:#c8441a;'>Transformation</em> Roadmap</h2>
+ <p style="font-size:15px; color:#8a8480; max-width:680px; margin-bottom:40px; line-height:1.7;">The full 90-day plan across three tracks. This view is for Sue, Jess, and internal leadership. It will not appear on the employee-facing site.</p>
+
+ <div style="display:grid; grid-template-columns:148px 1fr 1fr 1fr; border:1px solid #2a2d34; border-radius:6px; overflow:hidden; font-family:'IBM Plex Mono',monospace;">
+
+ <!-- HEADER ROW -->
+ <div style="border-right:1px solid #2a2d34; border-bottom:1px solid #2a2d34; padding:14px 16px;"></div>
+ <div style="border-right:1px solid #2a2d34; border-bottom:1px solid #2a2d34; padding:14px 18px; background:rgba(30,58,110,0.15);">
+ <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#4f8ef7; margin-bottom:3px;">Day 30</div>
+ <div style="font-family:'Playfair Display',serif; font-size:18px; color:#4f8ef7;">March 30</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Position locked</div>
+ </div>
+ <div style="border-right:1px solid #2a2d34; border-bottom:1px solid #2a2d34; padding:14px 18px; background:rgba(181,98,10,0.1);">
+ <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#f7914f; margin-bottom:3px;">Day 60</div>
+ <div style="font-family:'Playfair Display',serif; font-size:18px; color:#f7914f;">April 30</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Leaders aligned</div>
+ </div>
+ <div style="border-bottom:1px solid #2a2d34; padding:14px 18px; background:rgba(26,92,54,0.1);">
+ <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#4fbf7f; margin-bottom:3px;">Day 90</div>
+ <div style="font-family:'Playfair Display',serif; font-size:18px; color:#4fbf7f;">May 30</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Cascade complete</div>
+ </div>
+
+ <!-- ORG READINESS -->
+ <div style="border-right:1px solid #2a2d34; border-bottom:1px solid #2a2d34; padding:16px; display:flex; align-items:center; gap:10px;">
+ <div style="width:8px; height:8px; border-radius:50%; background:#1e3a6e; flex-shrink:0;"></div>
+ <div style="font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#e8eaf0; line-height:1.5;">Org<br>Readiness</div>
+ </div>
+ <div style="border-right:1px solid #2a2d34; border-bottom:1px solid #2a2d34; padding:12px 14px; display:flex; flex-direction:column; gap:6px;">
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1e3a6e; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">DCP point of view on the future of the business</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug + John</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1e3a6e; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Governing principle on what we claim externally</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug</div>
+ </div>
+ </div>
+ <div style="border-right:1px solid #2a2d34; border-bottom:1px solid #2a2d34; padding:12px 14px; display:flex; flex-direction:column; gap:6px;">
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1e3a6e; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Present vision to both SLTs</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug + John · half-meeting</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1e3a6e; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Leadership aligned on talent progression</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug + John · ECD + HR</div>
+ </div>
+ </div>
+ <div style="border-bottom:1px solid #2a2d34; padding:12px 14px; display:flex; flex-direction:column; gap:6px;">
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1e3a6e; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Intelligence-first in how both agencies brief and talk about work</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Leader-led · both agencies</div>
+ </div>
+ </div>
+
+ <!-- ENABLEMENT -->
+ <div style="border-right:1px solid #2a2d34; border-bottom:1px solid #2a2d34; padding:16px; display:flex; align-items:center; gap:10px;">
+ <div style="width:8px; height:8px; border-radius:50%; background:#7a3d10; flex-shrink:0;"></div>
+ <div style="font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#e8eaf0; line-height:1.5;">Enable&shy;ment</div>
+ </div>
+ <div style="border-right:1px solid #2a2d34; border-bottom:1px solid #2a2d34; padding:12px 14px; display:flex; flex-direction:column; gap:6px;">
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #7a3d10; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Map tool access inventory</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Missy (CM) · Steve (Doner)</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #7a3d10; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Creative leadership session at CM</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug · March 22</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #7a3d10; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Design ongoing conversation cadence</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug</div>
+ </div>
+ </div>
+ <div style="border-right:1px solid #2a2d34; border-bottom:1px solid #2a2d34; padding:12px 14px; display:flex; flex-direction:column; gap:6px;">
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #7a3d10; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Creative leadership session at Doner</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug · open invite</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #7a3d10; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Convene studio leadership group</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Eric · Adina · Laurel · Chris K</div>
+ </div>
+ </div>
+ <div style="border-bottom:1px solid #2a2d34; padding:12px 14px; display:flex; flex-direction:column; gap:6px;">
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #7a3d10; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">First 3 months of sessions underway</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Both agencies</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #7a3d10; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Generative AI certification live</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Both agencies · mandatory</div>
+ </div>
+ </div>
+
+ <!-- PRODUCT + KNOWLEDGE -->
+ <div style="border-right:1px solid #2a2d34; padding:16px; display:flex; align-items:center; gap:10px;">
+ <div style="width:8px; height:8px; border-radius:50%; background:#1a5c36; flex-shrink:0;"></div>
+ <div style="font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#e8eaf0; line-height:1.5;">Product +<br>Knowledge</div>
+ </div>
+ <div style="border-right:1px solid #2a2d34; padding:12px 14px; display:flex; flex-direction:column; gap:6px;">
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1a5c36; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Document the nucleus architecture</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug · Saurav · Harsh</div>
+ </div>
+ </div>
+ <div style="border-right:1px solid #2a2d34; padding:12px 14px; display:flex; flex-direction:column; gap:6px;">
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1a5c36; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Solidify technology team structure</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug · Saurav · Shawn</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1a5c36; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Perdue nucleus encoding workshop</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug + John · April 20</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1a5c36; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Live intelligence demo in pitches</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug + John + new biz</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1a5c36; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">RSG sprint two define</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug Everhart · Brittany</div>
+ </div>
+ </div>
+ <div style="padding:12px 14px; display:flex; flex-direction:column; gap:6px;">
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1a5c36; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Technology team operating as one</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Saurav · Shawn</div>
+ </div>
+ <div style="background:#16181c; border:1px solid #2a2d34; border-left:3px solid #1a5c36; border-radius:3px; padding:7px 10px;">
+ <div style="font-size:10px; font-weight:500; color:#e8eaf0;">Studio AI services as a named offering</div>
+ <div style="font-size:9px; color:#6b7280; margin-top:2px;">Doug · Saurav · Harsh · Adina</div>
+ </div>
+ </div>
+
+ </div>
+</section>
+
+
+<footer>
+ <div class="footer-brand">AI In the Agency · DonerColle Partners · 2026</div>
+ <div class="footer-note">Questions? [Contact placeholder]</div>
+</footer>
+
+
+<script>
+function toggleS(i) {
+  var expand = document.getElementById('se' + i);
+  var isOpen = expand.classList.contains('open');
+
+  // Close all
+  for (var j = 0; j < 7; j++) {
+    var e = document.getElementById('se' + j);
+    var t = document.getElementById('st' + j);
+    var top = document.querySelector('#sc' + j + ' .s-top');
+    if (e) { e.classList.remove('open'); }
+    if (t) { t.textContent = '+ more'; }
+    if (top) { top.classList.remove('open'); }
+  }
+
+  // Open clicked one if it was closed
+  if (!isOpen) {
+    expand.classList.add('open');
+    document.getElementById('st' + i).textContent = '- less';
+    document.querySelector('#sc' + i + ' .s-top').classList.add('open');
+  }
+}
+</script>
+</body>
+</html>
