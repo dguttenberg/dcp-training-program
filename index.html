@@ -298,9 +298,7 @@ section {
 .fmt-debate  { background: rgba(232,80,128,0.12);  color: var(--pink); }
 
 .cert-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  display: block;
   align-items: start;
 }
 .cert-body { font-size: 15px; line-height: 1.75; color: #b0b0cc; }
@@ -312,14 +310,15 @@ section {
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--muted);
   text-decoration: none;
-  border: 1px solid var(--green);
+  border: 1px solid var(--muted);
   padding: 8px 16px;
   border-radius: 3px;
-  transition: background 0.15s;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.7;
 }
-.cert-link:hover { background: rgba(0,232,122,0.1); }
 .cert-details {
   background: var(--bg2);
   border: 1px solid var(--rule);
@@ -460,11 +459,10 @@ footer {
 </section>
 
 <section id="letter">
-  <div class="section-eyebrow">Where we are going</div>
   <h2 class="section-title">AI is already <em>here.</em></h2>
   <div class="letter-body">
     <p>The question is no longer whether to use it. It is whether we use it well, with intention, and in a way that amplifies what makes us distinctive and increases the judgment, creativity, and impact of the people in this building.</p>
-    <p>This is DCP's plan for doing that. A genuine program built around the belief that people are what makes any of this work in the first place.</p>
+    <p>This is DCP's plan for doing that. A program built around the belief that people are what makes any of this work in the first place.</p>
     <p>Three things are happening in parallel: a conversation series designed to build real skill and provoke thinking, a certification that gives everyone a shared foundation, and a clear map of what tools are available and how to access them.</p>
     <div class="letter-pull">
       <p>This is not a one-size-fits-all program. It is something we are building together, and there is space to learn, experiment, and engage at your own pace.</p>
@@ -474,32 +472,29 @@ footer {
 
 <section id="approach">
   <div class="section-eyebrow">Our approach</div>
-  <h2 class="section-title">Three things. <em>One direction.</em></h2>
-  <p class="section-intro">Three things are running in parallel across DCP. They are designed to work together, reinforcing how we think, how we learn, and how we work. Here is how each one fits in.</p>
+  <h2 class="section-title">Three components of <em>the program.</em></h2>
   <div class="approach-grid">
     <a class="approach-card" href="#conversations">
       <div class="ac-num">01</div>
       <div class="ac-title">The Conversations</div>
-      <div class="ac-body">A bi-weekly series of sessions across DCP. Panels, debates, live showcases, and structured conversations. Some sessions build specific skills. Others deepen how you think about AI and what you do with it. All of them are built around the idea that real mastery comes from engaging with the hard questions, not just the tools.</div>
+      <div class="ac-body">A series of sessions across DCP. Panels, debates, live showcases and structured conversations. Some sessions build specific skills, others deepen how you can think and what you can do with AI.</div>
     </a>
     <a class="approach-card" href="#certification">
       <div class="ac-num">02</div>
       <div class="ac-title">The Certification</div>
-      <div class="ac-body">A self-directed course that builds the foundational knowledge everyone at DCP needs to use AI responsibly and well. A significant focus is on generative AI guardrails and safety: how to protect ourselves collectively, protect client confidentiality, and avoid the kinds of misuse that create real risk. Mandatory across DCP.</div>
+      <div class="ac-body">A self-directed course that builds foundations that everyone at DCP needs to use AI responsibly and well. A significant focus is on generative AI guardrails and safety: how to protect ourselves collectively, protect client confidentiality, and avoid the kinds of misuse that create real risk.</div>
     </a>
     <a class="approach-card" href="#tools">
       <div class="ac-num">03</div>
       <div class="ac-title">Tool Access</div>
-      <div class="ac-body">A clear map of what AI tools are available to you right now and how to access them. Right now that means Copilot and Firefly. No one gets asked to learn something they cannot touch. Links, access levels, and the ability to request access live here.</div>
+      <div class="ac-body">Links and descriptions of what AI tools are available to you right now. Links, access levels, and the ability to request access.</div>
     </a>
   </div>
 </section>
 
 <section id="conversations">
-  <div class="section-eyebrow">AI Foundations</div>
-  <div class="series-label">The Conversation Series</div>
-  <h2 class="section-title">Nine sessions. Real <em>mastery.</em></h2>
-  <p class="section-intro">Bi-weekly across DCP. Each session is a different format: panel, debate, showcase, live build. All of them are designed to build real mastery of AI as a technology and generate the kind of conversation that lives beyond the room.</p>
+  <div class="section-eyebrow">The Conversation Series</div>
+  <h2 class="section-title">Nine sessions <em>exploring AI.</em></h2>
 
   <div class="series-sessions">
     <div class="s-card" id="sc0">
@@ -656,10 +651,10 @@ footer {
 
   <div class="cert-layout">
     <div class="cert-body">
-      <p>The DCP AI Foundations Certification builds the knowledge every person at DCP needs to use AI responsibly and well. What AI actually is and is not. How it gets built and why what goes into it matters. Which tools are approved and why. How to use them without creating risk for yourself, your clients, or the agency.</p>
-      <p>A significant portion covers generative AI guardrails and safety: what not to put into AI systems, how to protect client confidentiality, how to handle intellectual property questions, and when to ask for help before something becomes a problem.</p>
-      <p>Self-paced and self-directed. There is a quiz at the end and a completion certificate. Mandatory for both agencies. This is the shared foundation everyone builds from before engaging with the rest of the program.</p>
-      <a class="cert-link" href="https://dcp-certification-ivory.vercel.app" target="_blank">Preview the certification course</a>
+      <p>The DCP AI Foundations Certification provides a baseline for every person at DCP to use AI responsibly and well. You'll learn what AI physically is, how it gets built and how to shape it.</p>
+      <p>A significant portion covers generative AI guardrails and safety including client confidentiality, intellectual property questions, and when to ask for help before something becomes a problem.</p>
+      <p>It is self-paced and self-directed. There is a quiz at the end and a completion certificate.</p>
+      <span class="cert-link" aria-disabled="true">Certification Quiz Coming Soon</span>
       <div class="course-sections">
         <div class="cs-row">
           <div class="cs-num">1</div>
@@ -706,28 +701,6 @@ footer {
       </div>
     </div>
 
-    <div class="cert-details">
-      <div class="cert-row">
-        <div class="cert-label">Format</div>
-        <div class="cert-val">Self-paced · self-directed · online</div>
-      </div>
-      <div class="cert-row">
-        <div class="cert-label">Quiz</div>
-        <div class="cert-val">8 questions · 80% to pass · unlimited retakes</div>
-      </div>
-      <div class="cert-row">
-        <div class="cert-label">Deadline</div>
-        <div class="cert-val">One month from date assigned</div>
-      </div>
-      <div class="cert-row">
-        <div class="cert-label">Required</div>
-        <div class="cert-val">Both agencies · all staff</div>
-      </div>
-      <div class="cert-row">
-        <div class="cert-label">Coming</div>
-        <div class="cert-val">Distributed through people ops · date TBD</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -754,7 +727,7 @@ footer {
 
 <footer>
   <div class="footer-brand">AI Foundations · DonerColle Partners · 2026</div>
-  <div class="footer-note">This entire program was created with little AI and a lot of thought.</div>
+  <div class="footer-note">This program was created with a little AI and a lot of love.</div>
 </footer>
 
 <script>
