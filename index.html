@@ -213,23 +213,6 @@ section {
 .s-top {
   display: flex;
   align-items: stretch;
-  cursor: pointer;
-  transition: background 0.12s;
-}
-.s-top:hover, .s-top.open { background: var(--surface); }
-.s-week {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  padding: 20px 14px;
-  border-right: 1px solid var(--rule);
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  width: 72px;
-  letter-spacing: 0.06em;
-  line-height: 1.3;
-  text-align: center;
 }
 .s-num {
   font-family: 'Barlow Condensed', sans-serif;
@@ -256,46 +239,6 @@ section {
 }
 .s-title em { font-style: normal; color: var(--green); }
 .s-summary { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.s-right {
-  padding: 20px 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  flex-shrink: 0;
-  width: 160px;
-  border-left: 1px solid var(--rule);
-}
-.s-badge {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 2px;
-  display: inline-block;
-  width: fit-content;
-}
-.s-who { font-size: 11px; color: var(--muted); line-height: 1.4; font-family: 'IBM Plex Mono', monospace; }
-.s-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--green); letter-spacing: 0.08em; margin-top: 4px; }
-.s-expand {
-  display: none;
-  padding: 16px 22px 20px 124px;
-  border-top: 1px solid var(--rule);
-  background: var(--surface);
-  font-size: 14px;
-  line-height: 1.75;
-  color: #b0b0cc;
-}
-.s-expand.open { display: block; }
-
-.fmt-panel   { background: rgba(0,232,122,0.1);    color: var(--green); }
-.fmt-ama     { background: rgba(232,80,128,0.12);  color: var(--pink); }
-.fmt-provoke { background: rgba(0,232,122,0.1);    color: var(--green); }
-.fmt-joint   { background: rgba(180,100,255,0.12); color: #b464ff; }
-.fmt-show    { background: rgba(0,232,122,0.1);    color: var(--green); }
-.fmt-build   { background: rgba(0,180,255,0.12);   color: #40b4ff; }
-.fmt-debate  { background: rgba(232,80,128,0.12);  color: var(--pink); }
 
 .cert-layout {
   display: block;
@@ -434,7 +377,7 @@ footer {
   .hero-title { font-size: 44px; }
   .section-title { font-size: 32px; }
   .approach-grid, .cert-layout, .tools-grid { grid-template-columns: 1fr; }
-  .s-week, .s-num, .s-right { display: none; }
+  .s-num { display: none; }
   footer { padding: 24px; flex-direction: column; gap: 8px; }
 }
 </style>
@@ -465,7 +408,7 @@ footer {
     <p>This is DCP's plan for doing that. A program built around the belief that people are what makes any of this work in the first place.</p>
     <p>Three things are happening in parallel: a conversation series designed to build real skill and provoke thinking, a certification that gives everyone a shared foundation, and a clear map of what tools are available and how to access them.</p>
     <div class="letter-pull">
-      <p>This is not a one-size-fits-all program. It is something we are building together, and there is space to learn, experiment, and engage at your own pace.</p>
+      <p>This is not a one-size-fits-all program. It is something we are building together, and there is space to learn, experiment, and engage at your&nbsp;own&nbsp;pace.</p>
     </div>
   </div>
 </section>
@@ -497,149 +440,86 @@ footer {
   <h2 class="section-title">Nine sessions <em>exploring AI.</em></h2>
 
   <div class="series-sessions">
-    <div class="s-card" id="sc0">
-      <div class="s-top" onclick="toggleS(0)">
-        <div class="s-week">Week 2</div>
+    <div class="s-card">
+      <div class="s-top">
         <div class="s-num">01</div>
         <div class="s-body">
           <div class="s-title">The future must be about <em>perspective</em></div>
           <div class="s-summary">When intelligence becomes abundant, the scarce thing is perspective. This session is about what that actually means for the people in this building: how point of view, taste, and judgment become more valuable, not less.</div>
         </div>
-        <div class="s-right">
-          <span class="s-badge fmt-panel">Panel</span>
-          <span class="s-who">Senior leaders across DCP</span>
-          <span class="s-toggle" id="st0">+ more</span>
-        </div>
       </div>
-      <div class="s-expand" id="se0">Format: Cross-disciplinary panel. The room includes ECDs, senior strategists, and account leads. The central question is not what AI does to creative work but what perspective, taste, and judgment are worth when intelligence is abundant and execution is cheap. Each agency runs their own version with their own senior people.</div>
     </div>
-    <div class="s-card" id="sc1">
-      <div class="s-top" onclick="toggleS(1)">
-        <div class="s-week">Week 4</div>
+    <div class="s-card">
+      <div class="s-top">
         <div class="s-num">02</div>
         <div class="s-body">
           <div class="s-title">What do you do with the <em>answers</em> you get?</div>
           <div class="s-summary">You are in a session with AI and something good is happening. Now what? This session is about the practical reality of working alongside a thought partner that generates fluently and fast.</div>
         </div>
-        <div class="s-right">
-          <span class="s-badge fmt-provoke">Provocation</span>
-          <span class="s-who">Doug-led</span>
-          <span class="s-toggle" id="st1">+ more</span>
-        </div>
       </div>
-      <div class="s-expand" id="se1">Format: Structured provocation with open discussion. The session tackles authorship, identity, and the practical craft of working with AI without losing your voice. How to separate your ideas from its outputs. What the role of your own writing is when AI can write too. How to know when to take the output and when to throw it away.</div>
     </div>
-    <div class="s-card" id="sc2">
-      <div class="s-top" onclick="toggleS(2)">
-        <div class="s-week">Week 6</div>
+    <div class="s-card">
+      <div class="s-top">
         <div class="s-num">03</div>
         <div class="s-body">
           <div class="s-title">Creativity is an <em>AI superpower</em></div>
           <div class="s-summary">Two creatives who have incorporated generative AI deeply into their day-to-day. They will show what they are making, explain how they think about it, and make things on the fly.</div>
         </div>
-        <div class="s-right">
-          <span class="s-badge fmt-show">Showcase</span>
-          <span class="s-who">Madison + Matt (Doner) · CM TBD</span>
-          <span class="s-toggle" id="st2">+ more</span>
-        </div>
       </div>
-      <div class="s-expand" id="se2">Format: Live showcase. Presenters share actual work from real projects, walk through their process, and demonstrate tools in real time. Includes unscripted live creation so the audience sees the process, not just the result. This is the first of many showcase sessions. If you are doing something interesting with AI in your work and want to show the agency, record a Loom and submit it to [email]. We review submissions on a rolling basis.</div>
     </div>
-    <div class="s-card" id="sc3">
-      <div class="s-top" onclick="toggleS(3)">
-        <div class="s-week">Week 8</div>
+    <div class="s-card">
+      <div class="s-top">
         <div class="s-num">04</div>
         <div class="s-body">
           <div class="s-title">DCP's AI <em>Advantage</em></div>
           <div class="s-summary">The full DCP, one room. A walk through how we are selling AI services to clients, what our ambition is, and what the response has been so far. Then the floor is yours.</div>
         </div>
-        <div class="s-right">
-          <span class="s-badge fmt-joint">Both agencies</span>
-          <span class="s-who">Doug + John</span>
-          <span class="s-toggle" id="st3">+ more</span>
-        </div>
       </div>
-      <div class="s-expand" id="se3">Format: Presentation followed by open Q&A. Hybrid session with live rooms at both Doner and CM on the same call. Covers what we have built for clients, how it is being received, where we are going with it, and what role the people in this room play in getting there. The one session where everyone across DCP is in the conversation together.</div>
     </div>
-    <div class="s-card" id="sc4">
-      <div class="s-top" onclick="toggleS(4)">
-        <div class="s-week">Week 10</div>
+    <div class="s-card">
+      <div class="s-top">
         <div class="s-num">05</div>
         <div class="s-body">
           <div class="s-title">Look what you <em>can do</em></div>
           <div class="s-summary">A practical hands-on session. Get into Copilot and build something functional that you will actually use: a personal agent, a daily briefing, a notes-to-email tool. You leave with something working.</div>
         </div>
-        <div class="s-right">
-          <span class="s-badge fmt-build">Live Build</span>
-          <span class="s-who">Doug-led</span>
-          <span class="s-toggle" id="st4">+ more</span>
-        </div>
       </div>
-      <div class="s-expand" id="se4">Format: Guided live build. Participants follow along in Copilot and build a personal agent during the session. Options include a daily status report pulled from your calendar and email, a personal briefing tool, or a notes-to-draft-email assistant. No technical background required. You leave with something functional.</div>
     </div>
-    <div class="s-card" id="sc5">
-      <div class="s-top" onclick="toggleS(5)">
-        <div class="s-week">Week 12</div>
+    <div class="s-card">
+      <div class="s-top">
         <div class="s-num">06</div>
         <div class="s-body">
           <div class="s-title">From account person to <em>intelligence analyst</em></div>
           <div class="s-summary">What happens when you really dig in. This session goes beyond generative AI into advanced application: using AI to build on your existing expertise and create something genuinely new.</div>
         </div>
-        <div class="s-right">
-          <span class="s-badge fmt-show">Showcase</span>
-          <span class="s-who">Ryan DeVito (Doner) · CM TBD</span>
-          <span class="s-toggle" id="st5">+ more</span>
-        </div>
       </div>
-      <div class="s-expand" id="se5">Format: Interview-style showcase. The presenter walks through how they took their existing background and built a new practice around it using AI tools. The emphasis is on depth of application, not breadth. Each agency brings their own version of this story. Followed by conversation about what it takes to get there.</div>
     </div>
-    <div class="s-card" id="sc6">
-      <div class="s-top" onclick="toggleS(6)">
-        <div class="s-week">Week 14</div>
+    <div class="s-card">
+      <div class="s-top">
         <div class="s-num">07</div>
         <div class="s-body">
           <div class="s-title"><em>Could</em> vs. should: a production debate</div>
           <div class="s-summary">A debate around how AI should and should not be used in production. The heads of production from across DCP making the case from their own experience and opening it up to the room.</div>
         </div>
-        <div class="s-right">
-          <span class="s-badge fmt-debate">Live Debate</span>
-          <span class="s-who">Jennie (Doner) · Laurel (CM)</span>
-          <span class="s-toggle" id="st6">+ more</span>
-        </div>
       </div>
-      <div class="s-expand" id="se6">Format: Live structured debate. The debate covers where AI is genuinely transforming production for the better, where it creates risk for brands and for craft, how production economics change when AI is in the equation, and what the production industry looks like in five years. The room is invited in.</div>
     </div>
-    <div class="s-card" id="sc7">
-      <div class="s-top" onclick="toggleS(7)">
-        <div class="s-week">Week 16</div>
+    <div class="s-card">
+      <div class="s-top">
         <div class="s-num">08</div>
         <div class="s-body">
           <div class="s-title">Firefly <em>Boards</em> in practice</div>
           <div class="s-summary">Adobe Firefly Boards across real client work. A range of case studies showing what the tool looks like in different creative contexts, presented by the people who used it.</div>
         </div>
-        <div class="s-right">
-          <span class="s-badge fmt-show">Showcase</span>
-          <span class="s-who">Doug Everhart + collaborators</span>
-          <span class="s-toggle" id="st7">+ more</span>
-        </div>
       </div>
-      <div class="s-expand" id="se7">Format: Multi-case study showcase. Covers real projects, how Firefly Boards were used, what came out of it, and what teams learned. Includes partner model work: Google Imagen and Veo for image and video generation, and Runway for video. Partner models are third-party AI systems integrated directly into Firefly so you can access multiple generation tools without leaving the platform.</div>
     </div>
-    <div class="s-card" id="sc8">
-      <div class="s-top" onclick="toggleS(8)">
-        <div class="s-week">Week 18</div>
+    <div class="s-card">
+      <div class="s-top">
         <div class="s-num">09</div>
         <div class="s-body">
           <div class="s-title">Ask us <em>anything</em></div>
           <div class="s-summary">The questions people are actually asking. About jobs. About privacy. About energy. About the moral weight of the technology. An open AMA with business and media guests. Bring your hardest questions.</div>
         </div>
-        <div class="s-right">
-          <span class="s-badge fmt-ama">AMA</span>
-          <span class="s-who">Business + media guests</span>
-          <span class="s-toggle" id="st8">+ more</span>
-        </div>
       </div>
-      <div class="s-expand" id="se8">Format: Open AMA. A panel with business and media representation alongside internal voices. Topics include job displacement, data privacy, energy consumption, the moral implications of generative AI, and what responsible use actually looks like in practice. No topic is off limits. Placed last so the room arrives with enough shared language and context to ask sharper questions.</div>
     </div>
   </div>
 
@@ -730,24 +610,5 @@ footer {
   <div class="footer-note">This program was created with a little AI and a lot of love.</div>
 </footer>
 
-<script>
-function toggleS(i) {
-  var expand = document.getElementById('se' + i);
-  var isOpen = expand.classList.contains('open');
-  for (var j = 0; j < 9; j++) {
-    var e = document.getElementById('se' + j);
-    var t = document.getElementById('st' + j);
-    var top = document.querySelector('#sc' + j + ' .s-top');
-    if (e) e.classList.remove('open');
-    if (t) t.textContent = '+ more';
-    if (top) top.classList.remove('open');
-  }
-  if (!isOpen) {
-    expand.classList.add('open');
-    document.getElementById('st' + i).textContent = '- less';
-    document.querySelector('#sc' + i + ' .s-top').classList.add('open');
-  }
-}
-</script>
 </body>
 </html>
