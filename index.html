@@ -253,15 +253,14 @@ section {
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--green);
   text-decoration: none;
-  border: 1px solid var(--muted);
+  border: 1px solid var(--green);
   padding: 8px 16px;
   border-radius: 3px;
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.7;
+  transition: background 0.15s;
 }
+.cert-link:hover { background: rgba(0,232,122,0.1); }
 .cert-details {
   background: var(--bg2);
   border: 1px solid var(--rule);
@@ -356,6 +355,35 @@ section {
   color: var(--muted);
   margin-top: 14px;
   line-height: 1.6;
+}
+.tool-video {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+.tool-video-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.tool-video-frame {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg2);
+}
+.tool-video-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 footer {
@@ -534,7 +562,7 @@ footer {
       <p>The DCP AI Foundations Certification provides a baseline for every person at DCP to use AI responsibly and well. You'll learn what AI physically is, how it gets built and how to shape it.</p>
       <p>A significant portion covers generative AI guardrails and safety including client confidentiality, intellectual property questions, and when to ask for help before something becomes a problem.</p>
       <p>It is self-paced and self-directed. There is a quiz at the end and a completion certificate.</p>
-      <span class="cert-link" aria-disabled="true">Certification Quiz Coming Soon</span>
+      <a class="cert-link" href="https://dcp-certification.vercel.app/" target="_blank">Start the Certification</a>
       <div class="course-sections">
         <div class="cs-row">
           <div class="cs-num">1</div>
@@ -595,6 +623,12 @@ footer {
       <div class="tool-body">Your AI assistant inside Microsoft 365. Copilot works across Word, Excel, PowerPoint, Outlook, and Teams. It can draft documents, summarize email threads, analyze data, and build personal agents that automate recurring tasks. The DCP enterprise license also gives you access to Claude (Anthropic) and ChatGPT (OpenAI) models through the Microsoft environment, with enterprise data protections in place. Your data stays inside the DCP tenant.</div>
       <a class="tool-link" href="https://copilot.microsoft.com" target="_blank">Access Copilot</a>
       <div class="tool-note">Available to all DCP staff with a Microsoft 365 license. If you do not see Copilot in your apps, contact IT.</div>
+      <div class="tool-video">
+        <div class="tool-video-label">Watch: Switch Copilot Models for Deeper Reasoning</div>
+        <div class="tool-video-frame">
+          <iframe src="https://www.loom.com/embed/d9502a33d0f94c7b9e4e9ddf027c92ee" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
     <div class="tool-card">
       <div class="tool-name">Adobe Firefly</div>
@@ -614,5 +648,9 @@ footer {
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
